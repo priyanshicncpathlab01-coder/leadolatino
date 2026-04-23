@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logo from '../assets/Logo.PNG';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -46,11 +47,16 @@ const Navbar = () => {
             padding: scrolled ? '12px 0' : '20px 0',
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'linear-gradient(135deg, var(--color-gold), var(--color-gold-dark))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px rgba(201,152,46,0.3)' }}>
-                        <span style={{ fontFamily: 'var(--font-serif)', color: '#fff', fontWeight: 'bold', fontSize: '18px' }}>IW</span>
-                    </div>
-                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: '20px', fontWeight: '600', letterSpacing: '1px', color: getTextColor() }}>INDIA WORLD</span>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+                    <img 
+                        src={logo} 
+                        alt="India World Logo" 
+                        style={{ 
+                            height: scrolled ? '80px' : '120px', 
+                            width: 'auto',
+                            transition: 'height 0.3s ease'
+                        }} 
+                    />
                 </Link>
 
                 {/* Desktop Nav */}

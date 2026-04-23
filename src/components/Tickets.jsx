@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Tickets = () => {
     const passes = [
-        { title: 'Full Pass', price: '180€', features: ['All Workshops', 'All Parties', 'All Shows', 'Jack & Jill Access'] },
-        { title: 'Party Pass', price: '120€', features: ['All Parties (Fri-Sun)', 'All Shows', 'Pre-Party Access', 'Social Room'] },
-        { title: 'VIP Pass', price: '250€', features: ['Front Row Shows', 'VIP Lounge', 'All Workshops', 'All Parties', 'Fast Track Entry'], popular: true }
+        { title: 'Full Pass', price: '₹1500', features: ['All Workshops', 'All Parties', 'All Shows', 'Jack & Jill Access'] },
+        { title: 'Party Pass', price: '₹2500', features: ['All Parties (Fri-Sun)', 'All Shows', 'Pre-Party Access', 'Social Room'] },
+        { title: 'VIP Pass', price: '₹4000', features: ['Front Row Shows', 'VIP Lounge', 'All Workshops', 'All Parties', 'Fast Track Entry'], popular: true }
     ];
 
     return (

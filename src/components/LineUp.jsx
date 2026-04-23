@@ -1,18 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import marcoSara from '../assets/artists/marco_sara.png';
+import fernandoAyelen from '../assets/artists/fernando_ayelen.png';
 
 const artists = [
     {
         id: 1,
         name: 'Marco & Sara',
         role: 'Bachata Sensual',
-        image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=600&auto=format&fit=crop',
+        image: marcoSara,
     },
     {
         id: 2,
         name: 'Fernando & Ayelen',
         role: 'Salsa On1',
-        image: 'https://images.unsplash.com/photo-1504609774668-cb0a221f7344?q=80&w=600&auto=format&fit=crop',
+        image: fernandoAyelen,
     },
     {
         id: 3,
@@ -49,6 +51,18 @@ const artists = [
         name: 'Luis & Andrea',
         role: 'Bachata',
         image: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: 9,
+        name: 'Sergio & Ana',
+        role: 'Bachata Fusion',
+        image: 'https://images.unsplash.com/photo-1504609774668-cb0a221f7344?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: 10,
+        name: 'Simone & Danila',
+        role: 'Salsa & Bachata',
+        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop',
     }
 ];
 

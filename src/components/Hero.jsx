@@ -65,24 +65,27 @@ const Hero = () => {
                     </h2>
 
                     <h1 style={{
-                        fontSize: 'clamp(40px, 8vw, 80px)',
+                        fontSize: 'clamp(24px, 4vw, 42px)',
                         margin: '20px 0',
                         background: 'linear-gradient(to right, #fff, var(--color-gold-light))',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
                         color: 'transparent',
-                        lineHeight: '1.1',
-                        textShadow: 'none'
+                        lineHeight: '1.2',
+                        fontWeight: '300',
+                        letterSpacing: '4px',
+                        textTransform: 'uppercase'
                     }}>
-                        Welcome to the<br />Luxury Dance
+                        Welcome to the Luxury Dance
                     </h1>
 
                     <p style={{
                         maxWidth: '600px',
-                        margin: '0 auto 40px',
+                        margin: '0 auto 250px',
                         color: 'rgba(255,255,255,0.85)',
                         fontSize: '18px',
-                        textShadow: '0 1px 4px rgba(0,0,0,0.2)'
+                        textShadow: '0 1px 4px rgba(0,0,0,0.2)',
+                        lineHeight: '1.6'
                     }}>
                         Experience the ultimate dance festival in India. World-class performances, workshops, and luxury.
                     </p>

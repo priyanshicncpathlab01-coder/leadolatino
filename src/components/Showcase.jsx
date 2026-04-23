@@ -79,9 +79,6 @@ const ShowcaseCard = ({ section, index }) => {
                         style={{ y: imgY }}
                     />
                     <div className="showcase-image-overlay" />
-                    <div className="showcase-image-icon">
-                        <span>{section.icon}</span>
-                    </div>
                 </div>
             </motion.div>
 
@@ -287,22 +284,6 @@ const Showcase = () => {
                         rgba(26, 21, 16, 0.6) 100%
                     );
                     pointer-events: none;
-                }
-
-                .showcase-image-icon {
-                    position: absolute;
-                    bottom: 20px;
-                    left: 20px;
-                    width: 56px;
-                    height: 56px;
-                    background: rgba(255, 255, 255, 0.9);
-                    backdrop-filter: blur(10px);
-                    border-radius: 14px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 26px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
                 }
 
                 .showcase-content {

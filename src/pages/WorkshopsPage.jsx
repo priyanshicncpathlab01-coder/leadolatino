@@ -10,87 +10,107 @@ const WorkshopsPage = () => {
             <Navbar />
             
             <main style={{ paddingTop: '80px' }}>
-                {/* PDF Background Section */}
+                {/* Main Image Section */}
+                <section style={{ 
+                    width: '100%', 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    padding: '60px 0 0',
+                    background: 'white',
+                    overflow: 'hidden'
+                }}>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        style={{ width: '100%' }}
+                    >
+                        <img 
+                            src={workshopBg} 
+                            alt="Workshop Standee"
+                            style={{ 
+                                width: '100%', 
+                                height: 'auto', 
+                                display: 'block'
+                            }} 
+                        />
+                    </motion.div>
+                </section>
+
+                {/* Workshop Columns Section */}
                 <section style={{ 
                     position: 'relative', 
                     width: '100%', 
-                    minHeight: '800px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: '80px 24px'
+                    padding: '80px 24px',
+                    background: 'var(--color-bg-main)'
                 }}>
-                    {/* The PDF "Background" Layer */}
-                    <div style={{
-                        position: 'absolute',
-                        top: 0, left: 0, right: 0, bottom: 0,
-                        zIndex: 0,
-                        opacity: 0.25, // Subtle background
-                        pointerEvents: 'none',
-                        overflow: 'hidden'
-                    }}>
-                        <img 
-                            src={workshopBg} 
-                            alt=""
-                            style={{ 
-                                width: '100%', 
-                                height: '100%', 
-                                objectFit: 'cover',
-                                filter: 'brightness(1.1) contrast(1.05)'
-                            }} 
-                        />
-                    </div>
-
-                    {/* Content Layer */}
                     <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '1200px' }}>
                         <h2 style={{ 
                             textAlign: 'center', 
                             fontSize: '42px', 
                             marginBottom: '60px',
                             color: 'var(--color-text-heading)',
-                            textShadow: '0 2px 10px rgba(255,255,255,0.8)'
+                            fontWeight: '700'
                         }}>Workshop Schedule</h2>
                         
                         <div style={{ 
                             display: 'grid', 
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-                            gap: '30px' 
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                            gap: '40px' 
                         }}>
                             {[1, 2, 3, 4].map((col) => (
                                 <motion.div 
                                     key={col}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: col * 0.1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: col * 0.1, duration: 0.5 }}
                                     className="glass-panel"
                                     style={{ 
-                                        padding: '50px 30px', 
-                                        minHeight: '400px',
+                                        padding: '60px 40px', 
+                                        minHeight: '450px',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         textAlign: 'center',
-                                        background: 'rgba(255, 255, 255, 0.85)',
-                                        border: '2px dashed var(--color-gold-subtle)'
+                                        background: 'rgba(255, 255, 255, 0.95)',
+                                        border: '1px solid rgba(212, 175, 55, 0.2)',
+                                        borderRadius: '24px',
+                                        boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
                                     }}
                                 >
                                     <div style={{ 
-                                        width: '60px', 
-                                        height: '60px', 
-                                        background: 'var(--color-gold-subtle)', 
+                                        width: '70px', 
+                                        height: '70px', 
+                                        background: 'linear-gradient(135deg, var(--color-gold-subtle), #fff)', 
                                         borderRadius: '50%', 
                                         display: 'flex', 
                                         alignItems: 'center', 
                                         justifyContent: 'center',
-                                        marginBottom: '20px',
-                                        color: 'var(--color-gold-dark)'
+                                        marginBottom: '30px',
+                                        color: 'var(--color-gold-dark)',
+                                        boxShadow: '0 5px 15px rgba(212, 175, 55, 0.2)',
+                                        fontSize: '28px',
+                                        fontWeight: '800'
                                     }}>
-                                        <span style={{ fontSize: '24px', fontWeight: 'bold' }}>{col}</span>
+                                        {col}
                                     </div>
-                                    <h3 style={{ fontSize: '20px', marginBottom: '15px' }}>Column {col}</h3>
-                                    <p style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}>
-                                        Workshop details and timing for this slot will be added soon.
+                                    <h3 style={{ 
+                                        fontSize: '24px', 
+                                        marginBottom: '20px',
+                                        color: 'var(--color-text-heading)',
+                                        fontWeight: '600'
+                                    }}>Slot {col}</h3>
+                                    <p style={{ 
+                                        color: 'var(--color-text-muted)', 
+                                        fontSize: '16px',
+                                        lineHeight: '1.6'
+                                    }}>
+                                        Exclusive workshop sessions with world-class instructors. Details coming soon.
                                     </p>
                                 </motion.div>
                             ))}

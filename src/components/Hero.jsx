@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import bgVideo from '../assets/EXpolnn 3.mp4';
 
 const Hero = () => {
@@ -87,8 +88,8 @@ const Hero = () => {
                     </p>
 
                     <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <button className="btn-gold">Buy Tickets</button>
-                        <button className="btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>Explore Line Up</button>
+                        <Link to="/tickets" className="btn-gold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px' }}>Buy Tickets</Link>
+                        <a href="#line-up" className="btn-outline" style={{ color: '#fff', borderColor: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px' }}>Explore Line Up</a>
                     </div>
                 </motion.div>
             </div>
@@ -110,6 +111,7 @@ const Hero = () => {
         }
       `}</style>
         </section>
+
     );
 };
 

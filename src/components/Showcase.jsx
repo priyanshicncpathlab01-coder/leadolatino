@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 import workshopBg from '../assets/workshop_bg.png';
 import lineupBg from '../assets/lineup_bg.png';
@@ -140,16 +141,28 @@ const ShowcaseCard = ({ section, index }) => {
                     ))}
                 </div>
 
-                <motion.button
-                    className="btn-gold showcase-cta"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                >
-                    {section.cta}
-                </motion.button>
+                {section.id === 'tickets' ? (
+                    <Link
+                        to="/tickets"
+                        className="btn-gold showcase-cta"
+                        style={{ display: 'inline-block' }}
+                    >
+                        {section.cta}
+                    </Link>
+                ) : (
+                    <motion.a
+                        href={`#${section.id}`}
+                        className="btn-gold showcase-cta"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: 0.7 }}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ display: 'inline-block' }}
+                    >
+                        {section.cta}
+                    </motion.a>
+                )}
             </motion.div>
         </div>
     );

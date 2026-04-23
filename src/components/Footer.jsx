@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MessageCircle, Camera, Globe } from 'lucide-react';
 
 const Footer = () => {
@@ -14,8 +15,8 @@ const Footer = () => {
                         <h4 style={{ color: '#fff', fontSize: '16px', marginBottom: '20px' }}>Quick Links</h4>
                         <ul style={{ listStyle: 'none', color: 'rgba(255,255,255,0.6)', gap: '10px', display: 'flex', flexDirection: 'column' }}>
                             <li><a href="#home" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Home</a></li>
-                            <li><a href="#about" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>About</a></li>
-                            <li><a href="#buy-tickets" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Tickets</a></li>
+                            <li><a href="#line-up" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Line Up</a></li>
+                            <li><Link to="/tickets" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Tickets</Link></li>
                         </ul>
                     </div>
                     <div>

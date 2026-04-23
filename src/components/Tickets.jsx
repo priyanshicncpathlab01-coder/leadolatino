@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Tickets = () => {
     const passes = [
@@ -10,7 +11,7 @@ const Tickets = () => {
     ];
 
     return (
-        <section id="buy-tickets" style={{ padding: '100px 0', background: 'var(--color-bg-alt)' }}>
+        <section id="tickets" style={{ padding: '100px 0', background: 'var(--color-bg-alt)' }}>
             <div style={{ textAlign: 'center', marginBottom: '60px' }}>
                 <h2 style={{ fontSize: '36px', fontFamily: 'var(--font-serif)', marginBottom: '15px' }}>Buy Tickets</h2>
                 <div style={{ width: '50px', height: '3px', background: 'var(--color-gold)', margin: '0 auto', borderRadius: '3px' }} />
@@ -38,7 +39,7 @@ const Tickets = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <button className={pass.popular ? "btn-gold" : "btn-outline"} style={{ width: '100%' }}>Book Now</button>
+                            <Link to="/tickets" className={pass.popular ? "btn-gold" : "btn-outline"} style={{ width: '100%', display: 'block', textAlign: 'center' }}>Book Now</Link>
                         </motion.div>
                     ))}
                 </div>

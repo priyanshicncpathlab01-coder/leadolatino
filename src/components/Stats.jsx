@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Users, Star, BookOpen, Music } from 'lucide-react';
 
 const statsData = [
-    { value: 6000, suffix: '+', label: 'Social Dancers', icon: '💃' },
-    { value: 600, suffix: '+', label: 'Artists', icon: '🎭' },
-    { value: 250, suffix: '', label: 'Workshops', icon: '🎓' },
-    { value: 150, suffix: '', label: 'Shows', icon: '🎪' },
+    { value: 1111, suffix: '+', label: 'Social Dancers', Icon: Users },
+    { value: 100, suffix: '+', label: 'Artists', Icon: Star },
+    { value: 120, suffix: '', label: 'Workshops', Icon: BookOpen },
+    { value: 50, suffix: '', label: 'Shows', Icon: Music },
 ];
 
 // Animated counter hook
@@ -38,47 +39,60 @@ function useCounter(target, isVisible, duration = 2000) {
     return count;
 }
 
-const StatCard = ({ value, suffix, label, icon, index, isVisible }) => {
-    const count = useCounter(value, isVisible, 2200);
+const StatCard = ({ value, suffix, label, Icon, index, isVisible }) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+    const count = useCounter(value, isVisible);
+
+    // Auto-reveal sequence on first sight
+    useEffect(() => {
+        if (!isVisible) return;
+        const revealTimeout = setTimeout(() => setIsFlipped(true), 1200 + index * 400);
+        const hideTimeout = setTimeout(() => setIsFlipped(false), 6000 + index * 400);
+        return () => {
+            clearTimeout(revealTimeout);
+            clearTimeout(hideTimeout);
+        };
+    }, [isVisible, index]);
 
     return (
         <motion.div
-            className="stat-card"
-            initial={{ opacity: 0, y: 60, scale: 0.85 }}
-            animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{
-                duration: 0.7,
-                delay: index * 0.15,
-                ease: [0.16, 1, 0.3, 1],
-            }}
+            className="stat-card-container"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            onMouseEnter={() => setIsFlipped(true)}
+            onMouseLeave={() => setIsFlipped(false)}
         >
-            {/* Glow ring behind the icon */}
             <motion.div
-                className="stat-icon-wrapper"
-                animate={isVisible ? { rotate: [0, 5, -5, 0] } : {}}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 1, delay: index * 0.3 }}
+                className="stat-card-inner"
+                animate={{ rotateY: isFlipped ? 180 : 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
-                <span className="stat-icon">{icon}</span>
+                {/* Front Side */}
+                <div className="stat-card-front">
+                    <div className="stat-icon-wrapper">
+                        <div className="stat-icon-inner">
+                            <Icon size={32} strokeWidth={1.5} />
+                        </div>
+                        <div className="stat-icon-ring" />
+                    </div>
+                    <span className="stat-label">{label}</span>
+                    <div className="stat-card-hint">Hover to reveal</div>
+                </div>
+
+                {/* Back Side */}
+                <div className="stat-card-back">
+                    <motion.span
+                        className="stat-number"
+                        animate={isFlipped ? { scale: [0.9, 1.05, 1] } : {}}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                        {count.toLocaleString()}{suffix}
+                    </motion.span>
+                    <span className="stat-label-back">{label}</span>
+                    <div className="stat-underline" />
+                </div>
             </motion.div>
-
-            <motion.span
-                className="stat-number"
-                initial={{ scale: 0.5 }}
-                animate={isVisible ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
-            >
-                {count.toLocaleString()}{suffix}
-            </motion.span>
-
-            <span className="stat-label">{label}</span>
-
-            {/* Decorative bottom line */}
-            <motion.div
-                className="stat-underline"
-                initial={{ scaleX: 0 }}
-                animate={isVisible ? { scaleX: 1 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.15 + 0.5 }}
-            />
         </motion.div>
     );
 };
@@ -149,84 +163,142 @@ const Stats = () => {
                     gap: 24px;
                 }
 
-                .stat-card {
+                .stat-card-container {
+                    perspective: 1000px;
+                    height: 220px;
+                    width: 100%;
+                }
+
+                .stat-card-inner {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    transition: transform 0.6s;
+                    transform-style: preserve-3d;
+                }
+
+                .stat-card-front, .stat-card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 12px;
-                    padding: 36px 20px 28px;
-                    border-radius: 16px;
+                    justify-content: center;
+                    gap: 16px;
+                    padding: 30px 20px;
+                    border-radius: 24px;
                     background: var(--color-bg-card);
                     border: 1px solid var(--color-border);
-                    box-shadow: var(--shadow-sm);
-                    transition: all 0.4s ease;
-                    position: relative;
-                    overflow: hidden;
+                    box-shadow: 0 10px 30px -10px rgba(201, 152, 46, 0.15);
+                    transition: all 0.5s ease;
                 }
 
-                .stat-card::before {
-                    content: '';
+                .stat-card-front {
+                    background: linear-gradient(145deg, #ffffff, #faf8f5);
+                }
+
+                .stat-card-back {
+                    background: linear-gradient(145deg, #faf8f5, #ffffff);
+                    transform: rotateY(180deg);
+                    border-color: var(--color-gold-light);
+                    box-shadow: 0 15px 45px -12px rgba(201, 152, 46, 0.3);
+                }
+
+                .stat-card-container:hover .stat-card-front,
+                .stat-card-container:hover .stat-card-back {
+                    border-color: var(--color-gold);
+                    box-shadow: 0 20px 60px -15px rgba(201, 152, 46, 0.45);
+                }
+
+                .stat-card-hint {
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: radial-gradient(
-                        circle at 50% 0%,
-                        rgba(201, 152, 46, 0.06) 0%,
-                        transparent 70%
-                    );
-                    pointer-events: none;
-                }
-
-                .stat-card:hover {
-                    border-color: var(--color-border-gold);
-                    transform: translateY(-6px);
-                    box-shadow: var(--shadow-gold);
+                    bottom: 15px;
+                    font-size: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: var(--color-gold-dark);
+                    opacity: 0.6;
                 }
 
                 .stat-icon-wrapper {
-                    width: 64px;
-                    height: 64px;
+                    position: relative;
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justifyContent: center;
+                }
+
+                .stat-icon-inner {
+                    width: 60px;
+                    height: 60px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     border-radius: 50%;
-                    background: var(--color-gold-subtle);
+                    background: linear-gradient(135deg, white 0%, var(--color-gold-subtle) 100%);
+                    color: var(--color-gold-dark);
                     border: 1px solid var(--color-border-gold);
+                    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+                    z-index: 2;
                 }
 
-                .stat-icon {
-                    font-size: 32px;
-                    filter: drop-shadow(0 0 6px rgba(201,152,46,0.3));
+                .stat-icon-ring {
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 50%;
+                    border: 2px dashed var(--color-gold-light);
+                    opacity: 0.3;
+                    animation: rotate 10s linear infinite;
+                    z-index: 1;
+                }
+
+                @keyframes rotate {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
 
                 .stat-number {
                     font-family: var(--font-serif);
-                    font-size: clamp(36px, 5vw, 52px);
-                    font-weight: 600;
-                    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+                    font-size: clamp(36px, 5vw, 56px);
+                    font-weight: 800;
+                    letter-spacing: -1px;
+                    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
                     -webkit-background-clip: text;
                     background-clip: text;
                     color: transparent;
-                    line-height: 1;
+                    line-height: 1.1;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
                 }
 
                 .stat-label {
+                    font-family: var(--font-serif);
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: var(--color-text);
+                    font-weight: 500;
+                }
+
+                .stat-label-back {
                     font-family: var(--font-sans);
-                    font-size: 14px;
+                    font-size: 12px;
                     letter-spacing: 2px;
                     text-transform: uppercase;
                     color: var(--color-text-muted);
                 }
 
                 .stat-underline {
-                    width: 40px;
-                    height: 2px;
+                    width: 50px;
+                    height: 3px;
                     background: var(--color-gold);
-                    transform-origin: center;
-                    border-radius: 2px;
-                    margin-top: 4px;
+                    border-radius: 3px;
+                    margin-top: 8px;
+                    box-shadow: 0 2px 4px rgba(201, 152, 46, 0.3);
                 }
 
                 /* Responsive */

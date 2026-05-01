@@ -8,7 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops';
+    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about';
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -28,6 +28,7 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', path: '/', isHash: true },
+        { name: 'Dance Story', path: '/about', isHash: false },
         { name: 'Workshops', path: '/workshops', isHash: false },
         { name: 'Line Up', path: '/#line-up', isHash: true },
         { name: 'Tickets', path: '/tickets', isHash: false },
@@ -44,7 +45,7 @@ const Navbar = () => {
             borderBottom: (scrolled || isDarkPage) ? '1px solid rgba(201, 152, 46, 0.15)' : 'none',
             boxShadow: (scrolled || isDarkPage) ? '0 2px 20px rgba(0,0,0,0.2)' : 'none',
             transition: 'all 0.3s ease',
-            padding: scrolled ? '12px 0' : '20px 0',
+            padding: (isDarkPage) ? '8px 0' : (scrolled ? '12px 0' : '20px 0'),
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -52,7 +53,7 @@ const Navbar = () => {
                         src={logo} 
                         alt="India World Logo" 
                         style={{ 
-                            height: scrolled ? '80px' : '120px', 
+                            height: (isDarkPage) ? '60px' : (scrolled ? '80px' : '120px'), 
                             width: 'auto',
                             transition: 'height 0.3s ease'
                         }} 

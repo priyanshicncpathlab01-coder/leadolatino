@@ -10,7 +10,9 @@ import Tickets from './components/Tickets';
 import Footer from './components/Footer';
 import TicketsPage from './pages/TicketsPage';
 import WorkshopsPage from './pages/WorkshopsPage';
+import AboutPage from './pages/AboutPage';
 import ScrollToTop from './components/ScrollToTop';
+//import About from './components/About';
 
 function HomePage() {
   return (
@@ -37,6 +39,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/tickets" element={<TicketsPage />} />
         <Route path="/workshops" element={<WorkshopsPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </Router>
   );

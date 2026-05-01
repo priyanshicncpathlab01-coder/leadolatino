@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import bgVideo from '../assets/EXpolnn 3.mp4';
+import bgVideo from '../assets/lol vid.mp4';
 
 const Hero = () => {
     return (

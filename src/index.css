@@ -185,3 +185,36 @@ a {
   background: var(--color-gold);
   border-radius: 4px;
 }
+
+/* Responsive Utilities for About Section */
+@media (max-width: 768px) {
+  .about-grid {
+    gap: 40px !important;
+  }
+  .about-stats {
+    flex-wrap: wrap;
+    gap: 15px !important;
+  }
+  .about-stats-box {
+    flex: 1 1 calc(50% - 15px);
+    padding: 12px 16px !important;
+  }
+  .about-heading {
+    font-size: 32px !important;
+  }
+  .about-section {
+    padding: 60px 0 !important;
+  }
+  .insta-badge {
+    width: 80px !important;
+    height: 80px !important;
+    bottom: -20px !important;
+    right: -10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats-box {
+    flex: 1 1 100%;
+  }
+}

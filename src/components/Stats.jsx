@@ -123,7 +123,7 @@ const Stats = () => {
                 </div>
             </div>
 
-            <style>{`
+            <style dangerouslySetInnerHTML={{ __html: `
                 .stats-section {
                     position: relative;
                     padding: 80px 0 90px;
@@ -186,15 +186,15 @@ const Stats = () => {
                     backface-visibility: hidden;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
+                    alignItems: center;
+                    justifyContent: center;
                     gap: 16px;
                     padding: 30px 20px;
                     border-radius: 24px;
                     background: var(--color-bg-card);
-                    border: 1px solid var(--color-border);
-                    box-shadow: 0 10px 30px -10px rgba(201, 152, 46, 0.15);
-                    transition: all 0.5s ease;
+                    border: 1.5px solid rgba(212, 175, 55, 0.2);
+                    box-shadow: 0 10px 30px -10px rgba(201, 152, 46, 0.1);
+                    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 .stat-card-front {
@@ -202,16 +202,17 @@ const Stats = () => {
                 }
 
                 .stat-card-back {
-                    background: linear-gradient(145deg, #faf8f5, #ffffff);
+                    background: linear-gradient(145deg, #fdfcfb, #f5f2e8);
                     transform: rotateY(180deg);
                     border-color: var(--color-gold-light);
-                    box-shadow: 0 15px 45px -12px rgba(201, 152, 46, 0.3);
+                    box-shadow: 0 15px 45px -12px rgba(201, 152, 46, 0.2);
                 }
 
                 .stat-card-container:hover .stat-card-front,
                 .stat-card-container:hover .stat-card-back {
                     border-color: var(--color-gold);
-                    box-shadow: 0 20px 60px -15px rgba(201, 152, 46, 0.45);
+                    box-shadow: 0 20px 60px -15px rgba(201, 152, 46, 0.4);
+                    transform: translateY(-5px);
                 }
 
                 .stat-card-hint {
@@ -318,7 +319,7 @@ const Stats = () => {
                         padding: 60px 0 70px;
                     }
                 }
-            `}</style>
+            ` }} />
         </section>
     );
 };

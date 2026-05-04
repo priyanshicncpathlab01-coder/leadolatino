@@ -39,129 +39,72 @@ const sections = [
         features: ['Full Pass from ₹8,999', 'VIP Lounges', 'Early Bird Discounts'],
     },
     {
-        id: 'gallery',
-        title: 'Gallery',
-        subtitle: 'Relive the Magic',
-        description: 'Browse stunning moments captured from our previous editions. Every frame tells a story of connection, rhythm, and the universal language of dance.',
-        cta: 'View Gallery',
-        image: galleryBg,
-        icon: '📸',
-        features: ['HD Photos & Videos', 'Past Editions', 'Social Media Wall'],
+        id: 'jack-and-jill',
+        title: 'Jack & Jill',
+        subtitle: 'The Ultimate Battle',
+        description: 'Experience the thrill of the most anticipated competition of the festival. Showcase your skill, musicality, and connection in our official Jack & Jill battles.',
+        cta: 'Learn More',
+        image: galleryBg, // Keeping the image for now as it's a good generic dance image
+        icon: '🏆',
+        features: ['Cash Prizes', 'International Judges', 'Social Connection'],
     },
 ];
 
 const ShowcaseCard = ({ section, index }) => {
     const cardRef = useRef(null);
     const isInView = useInView(cardRef, { once: true, margin: '-100px' });
-    const isReversed = index % 2 !== 0;
-
-    const { scrollYProgress } = useScroll({
-        target: cardRef,
-        offset: ['start end', 'end start'],
-    });
-
-    const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
     return (
-        <div ref={cardRef} className={`showcase-card ${isReversed ? 'reversed' : ''}`}>
-            {/* Image Side */}
-            <motion.div
-                className="showcase-image-wrapper"
-                initial={{ opacity: 0, x: isReversed ? 80 : -80 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
+        <motion.div
+            ref={cardRef}
+            className="showcase-card"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+        >
+            <div className="showcase-image-wrapper">
                 <div className="showcase-image-container">
-                    <motion.img
-                        src={section.image}
-                        alt={section.title}
-                        className="showcase-image"
-                        style={{ y: imgY }}
-                    />
-                    <div className="showcase-image-overlay" />
+                    <img src={section.image} alt={section.title} className="showcase-image" />
                 </div>
-            </motion.div>
+            </div>
 
-            {/* Content Side */}
-            <motion.div
-                className="showcase-content"
-                initial={{ opacity: 0, x: isReversed ? -60 : 60 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-                <motion.span
-                    className="showcase-subtitle"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                    {section.subtitle}
-                </motion.span>
-
-                <motion.h2
-                    className="showcase-title"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.35 }}
-                >
-                    {section.title}
-                </motion.h2>
-
-                <motion.div
-                    className="showcase-divider"
-                    initial={{ scaleX: 0 }}
-                    animate={isInView ? { scaleX: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                />
-
-                <motion.p
-                    className="showcase-description"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.45 }}
-                >
-                    {section.description}
-                </motion.p>
-
+            <div className="showcase-content">
+                <span className="showcase-subtitle">{section.subtitle}</span>
+                <h3 className="showcase-title">{section.title}</h3>
+                <div className="showcase-divider" />
+                
+                <p className="showcase-description">{section.description}</p>
+                
                 <div className="showcase-features">
                     {section.features.map((feat, i) => (
-                        <motion.div
-                            key={feat}
-                            className="showcase-feature-item"
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                        >
-                            <span className="showcase-feature-dot" />
-                            {feat}
-                        </motion.div>
+                        <div key={i} className="showcase-feature-item">
+                            <div className="showcase-feature-dot" />
+                            <span style={{ fontSize: '14px', color: 'var(--color-text)' }}>{feat}</span>
+                        </div>
                     ))}
                 </div>
 
-                {section.id === 'tickets' ? (
-                    <Link
-                        to="/tickets"
-                        className="btn-gold showcase-cta"
-                        style={{ display: 'inline-block' }}
-                    >
-                        {section.cta}
-                    </Link>
-                ) : (
-                    <motion.a
-                        href={`#${section.id}`}
-                        className="btn-gold showcase-cta"
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.7 }}
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.98 }}
-                        style={{ display: 'inline-block' }}
-                    >
-                        {section.cta}
-                    </motion.a>
-                )}
-            </motion.div>
-        </div>
+                <div className="showcase-cta">
+                    {(section.id === 'tickets' || section.id === 'jack-and-jill') ? (
+                        <Link
+                            to={section.id === 'tickets' ? "/tickets" : "/jack-and-jill"}
+                            className="btn-gold"
+                            style={{ display: 'block', width: '100%', textAlign: 'center', padding: '16px' }}
+                        >
+                            {section.cta}
+                        </Link>
+                    ) : (
+                        <a
+                            href={`#${section.id}`}
+                            className="btn-outline"
+                            style={{ display: 'block', width: '100%', textAlign: 'center', padding: '16px' }}
+                        >
+                            {section.cta}
+                        </a>
+                    )}
+                </div>
+            </div>
+        </motion.div>
     );
 };
 
@@ -176,8 +119,8 @@ const Showcase = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
                 >
-                    <span className="showcase-header-tag">Explore</span>
-                    <h2 className="showcase-header-title">What Awaits You</h2>
+                    <span className="showcase-header-tag">The Experience</span>
+                    <h2 className="showcase-header-title shimmer-text">What Awaits You</h2>
                     <div className="showcase-header-line" />
                 </motion.div>
 
@@ -188,16 +131,34 @@ const Showcase = () => {
                 </div>
             </div>
 
-            <style>{`
+            <style dangerouslySetInnerHTML={{ __html: `
                 .showcase-section {
-                    padding: 100px 0 80px;
+                    padding: 140px 0 100px;
                     background: var(--color-bg-main);
                     position: relative;
                 }
 
+                .shimmer-text {
+                    background: linear-gradient(
+                        to right,
+                        var(--color-text-heading) 0%,
+                        var(--color-gold) 50%,
+                        var(--color-text-heading) 100%
+                    );
+                    background-size: 200% auto;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    animation: shimmer 4s linear infinite;
+                }
+
+                @keyframes shimmer {
+                    to { background-position: 200% center; }
+                }
+
                 .showcase-header {
                     text-align: center;
-                    margin-bottom: 70px;
+                    margin-bottom: 90px;
                 }
 
                 .showcase-header-tag {
@@ -210,20 +171,20 @@ const Showcase = () => {
                     color: var(--color-gold-dark);
                     background: var(--color-gold-subtle);
                     border: 1px solid var(--color-border-gold);
-                    padding: 6px 20px;
+                    padding: 8px 24px;
                     border-radius: 30px;
-                    margin-bottom: 16px;
+                    margin-bottom: 20px;
                 }
 
                 .showcase-header-title {
                     font-family: var(--font-serif);
-                    font-size: clamp(30px, 5vw, 48px);
-                    color: var(--color-text-heading);
-                    margin-bottom: 16px;
+                    font-size: clamp(36px, 6vw, 54px);
+                    margin-bottom: 20px;
+                    font-weight: 600;
                 }
 
                 .showcase-header-line {
-                    width: 60px;
+                    width: 80px;
                     height: 3px;
                     background: linear-gradient(90deg, var(--color-gold), var(--color-gold-dark));
                     margin: 0 auto;
@@ -231,81 +192,74 @@ const Showcase = () => {
                 }
 
                 .showcase-cards {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 80px;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 40px;
                 }
 
                 .showcase-card {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 50px;
-                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    background: #fff;
+                    border-radius: 40px;
+                    overflow: hidden;
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+                    border: 1px solid var(--color-border);
+                    transition: all 0.5s ease;
+                    height: 100%;
                 }
 
-                .showcase-card.reversed {
-                    direction: rtl;
-                }
-
-                .showcase-card.reversed > * {
-                    direction: ltr;
+                .showcase-card:hover {
+                    transform: translateY(-15px);
+                    box-shadow: 0 30px 70px rgba(201, 152, 46, 0.15);
+                    border-color: var(--color-border-gold);
                 }
 
                 .showcase-image-wrapper {
                     position: relative;
+                    width: 100%;
+                    aspect-ratio: 16 / 10;
+                    overflow: hidden;
                 }
 
                 .showcase-image-container {
-                    position: relative;
-                    border-radius: 16px;
-                    overflow: hidden;
-                    box-shadow: var(--shadow-lg);
-                    aspect-ratio: 4 / 3;
+                    width: 100%;
+                    height: 100%;
                 }
 
                 .showcase-image {
                     width: 100%;
-                    height: 120%;
+                    height: 100%;
                     object-fit: cover;
-                    display: block;
-                    transition: transform 0.6s ease;
+                    transition: transform 0.8s ease;
                 }
 
                 .showcase-card:hover .showcase-image {
-                    transform: scale(1.05);
-                }
-
-                .showcase-image-overlay {
-                    position: absolute;
-                    inset: 0;
-                    background: linear-gradient(
-                        180deg,
-                        transparent 40%,
-                        rgba(26, 21, 16, 0.6) 100%
-                    );
-                    pointer-events: none;
+                    transform: scale(1.1);
                 }
 
                 .showcase-content {
+                    padding: 40px;
                     display: flex;
                     flex-direction: column;
-                    gap: 8px;
+                    flex-grow: 1;
+                    gap: 15px;
                 }
 
                 .showcase-subtitle {
-                    font-family: var(--font-sans);
                     font-size: 13px;
-                    font-weight: 600;
+                    font-weight: 700;
                     letter-spacing: 3px;
                     text-transform: uppercase;
-                    color: var(--color-gold-dark);
+                    color: var(--color-gold);
                 }
 
                 .showcase-title {
                     font-family: var(--font-serif);
-                    font-size: clamp(28px, 4vw, 42px);
+                    font-size: 32px;
+                    line-height: 1.2;
                     color: var(--color-text-heading);
-                    margin: 4px 0;
+                    font-weight: 700;
                 }
 
                 .showcase-divider {
@@ -313,68 +267,72 @@ const Showcase = () => {
                     height: 3px;
                     background: var(--color-gold);
                     border-radius: 3px;
-                    transform-origin: left;
-                    margin: 8px 0;
                 }
 
                 .showcase-description {
                     font-size: 16px;
                     line-height: 1.7;
                     color: var(--color-text-muted);
-                    margin-bottom: 8px;
+                    margin-bottom: 10px;
                 }
 
                 .showcase-features {
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    margin: 8px 0 16px;
+                    gap: 12px;
+                    margin-bottom: 25px;
                 }
 
                 .showcase-feature-item {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--color-text-body);
+                    gap: 12px;
                 }
 
                 .showcase-feature-dot {
                     width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
+                    height: 2px;
                     background: var(--color-gold);
-                    flex-shrink: 0;
                 }
 
                 .showcase-cta {
-                    align-self: flex-start;
-                    margin-top: 8px;
+                    margin-top: auto;
+                    width: 100%;
+                    text-align: center;
                 }
 
                 /* Responsive */
                 @media (max-width: 900px) {
-                    .showcase-card,
-                    .showcase-card.reversed {
+                    .showcase-cards {
                         grid-template-columns: 1fr;
                         gap: 30px;
-                        direction: ltr;
-                    }
-                    .showcase-cards {
-                        gap: 60px;
                     }
                 }
 
                 @media (max-width: 480px) {
                     .showcase-section {
-                        padding: 70px 0 60px;
+                        padding: 80px 0 60px;
                     }
-                    .showcase-cards {
-                        gap: 50px;
+                    .showcase-header {
+                        margin-bottom: 50px;
+                    }
+                    .showcase-content {
+                        padding: 30px 20px;
                     }
                 }
-            `}</style>
+
+                @media (max-width: 480px) {
+                    .showcase-section {
+                        padding: 80px 0 60px;
+                    }
+                    .showcase-header {
+                        margin-bottom: 60px;
+                    }
+                    .showcase-cards {
+                        gap: 60px;
+                    }
+                }
+            ` }} />
         </section>
     );
 };

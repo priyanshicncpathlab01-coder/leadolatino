@@ -8,7 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about';
+    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about' || location.pathname === '/jack-and-jill';
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -28,11 +28,11 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', path: '/', isHash: true },
-        { name: 'Dance Story', path: '/about', isHash: false },
+        { name: 'About us', path: '/about', isHash: false },
         { name: 'Workshops', path: '/workshops', isHash: false },
         { name: 'Line Up', path: '/#line-up', isHash: true },
         { name: 'Tickets', path: '/tickets', isHash: false },
-        { name: 'Gallery', path: '/#gallery', isHash: true },
+        { name: 'Jack & Jill', path: '/jack-and-jill', isHash: false },
     ];
 
     return (
@@ -53,9 +53,9 @@ const Navbar = () => {
                         src={logo} 
                         alt="India World Logo" 
                         style={{ 
-                            height: (isDarkPage) ? '60px' : (scrolled ? '80px' : '120px'), 
+                            height: (isDarkPage) ? '80px' : (scrolled ? '100px' : '160px'), 
                             width: 'auto',
-                            transition: 'height 0.3s ease'
+                            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                         }} 
                     />
                 </Link>
@@ -101,34 +101,77 @@ const Navbar = () => {
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
 
-                <style>{`
-          @media (min-width: 768px) {
-            .nav-desktop { display: block !important; }
-            .nav-mobile-btn { display: none !important; }
-          }
-          .nav-link:hover { color: var(--color-gold) !important; }
-        `}</style>
+                <style dangerouslySetInnerHTML={{ __html: `
+                    @media (min-width: 768px) {
+                        .nav-desktop { display: block !important; }
+                        .nav-mobile-btn { display: none !important; }
+                    }
+                    .nav-link {
+                        position: relative;
+                        padding-bottom: 4px;
+                    }
+                    .nav-link::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--color-gold);
+                        transition: width 0.3s ease;
+                    }
+                    .nav-link:hover::after {
+                        width: 100%;
+                    }
+                    .nav-link:hover { 
+                        color: var(--color-gold) !important; 
+                    }
+                    @keyframes slideIn {
+                        from { opacity: 0; transform: translateY(-10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    .navbar-active {
+                        animation: slideIn 0.4s ease forwards;
+                    }
+                ` }} />
             </div>
 
             {/* Mobile Nav */}
             <motion.div
                 initial={false}
                 animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-                style={{ overflow: 'hidden', background: isDarkPage ? 'var(--color-bg-dark-section)' : 'var(--color-bg-main)', borderBottom: isOpen ? '1px solid var(--color-border-gold)' : 'none' }}
+                style={{ 
+                    overflow: 'hidden', 
+                    background: (isDarkPage || isOpen) ? 'rgba(26, 21, 16, 0.98)' : 'rgba(250, 248, 245, 0.98)', 
+                    borderBottom: isOpen ? '1px solid var(--color-border-gold)' : 'none',
+                    backdropFilter: 'blur(20px)'
+                }}
             >
-                <ul style={{ listStyle: 'none', padding: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '15px', textAlign: 'center' }}>
+                <ul style={{ listStyle: 'none', padding: '30px 20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '20px', textAlign: 'center' }}>
                     {navItems.map((item) => (
                         <li key={item.name}>
                             {!item.isHash ? (
                                 <Link to={item.path}
                                     onClick={() => setIsOpen(false)}
-                                    style={{ color: isDarkPage ? '#fff' : 'var(--color-gold-dark)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '14px' }}>
+                                    style={{ 
+                                        color: (isDarkPage || isOpen) ? '#fff' : 'var(--color-gold-dark)', 
+                                        textTransform: 'uppercase', 
+                                        letterSpacing: '3px', 
+                                        fontSize: '14px',
+                                        fontWeight: '600'
+                                    }}>
                                     {item.name}
                                 </Link>
                             ) : (
                                 <a href={location.pathname !== '/' ? item.path : item.path.replace('/', '')}
                                     onClick={() => setIsOpen(false)}
-                                    style={{ color: isDarkPage ? '#fff' : 'var(--color-gold-dark)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '14px' }}>
+                                    style={{ 
+                                        color: (isDarkPage || isOpen) ? '#fff' : 'var(--color-gold-dark)', 
+                                        textTransform: 'uppercase', 
+                                        letterSpacing: '3px', 
+                                        fontSize: '14px',
+                                        fontWeight: '600'
+                                    }}>
                                     {item.name}
                                 </a>
                             )}

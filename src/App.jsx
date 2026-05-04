@@ -11,7 +11,9 @@ import Footer from './components/Footer';
 import TicketsPage from './pages/TicketsPage';
 import WorkshopsPage from './pages/WorkshopsPage';
 import AboutPage from './pages/AboutPage';
+import JackAndJillPage from './pages/JackAndJillPage';
 import ScrollToTop from './components/ScrollToTop';
+import bgVideo from './assets/lol vid.mp4';
 //import About from './components/About';
 
 function HomePage() {
@@ -20,11 +22,11 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Stats />
+        <Features/>
+        <Tickets />
         <Showcase />
         <LineUp />
-        <Features />
-        <Tickets />
+        <Stats/>
       </main>
       <Footer />
     </div>
@@ -40,6 +42,7 @@ function App() {
         <Route path="/tickets" element={<TicketsPage />} />
         <Route path="/workshops" element={<WorkshopsPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/jack-and-jill" element={<JackAndJillPage />} />
       </Routes>
     </Router>
   );

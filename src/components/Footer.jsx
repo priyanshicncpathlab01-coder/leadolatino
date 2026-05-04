@@ -8,23 +8,48 @@ const Footer = () => {
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '40px' }}>
                     <div>
-                        <h3 style={{ color: 'var(--color-gold)', fontSize: '20px', marginBottom: '20px' }}>India World Dance Congress</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}>The luxury dance experience you've been waiting for. Join us and make memories that will last a lifetime.</p>
+                        <h3 style={{ color: 'var(--color-gold)', fontSize: '24px', marginBottom: '20px', fontFamily: 'var(--font-serif)' }}>India World Dance Congress</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', lineHeight: '1.8' }}>
+                            India’s premier Afro-Latin dance festival, bringing together the global Salsa, Bachata, Kizomba, and Zouk community.
+                        </p>
                     </div>
                     <div>
-                        <h4 style={{ color: '#fff', fontSize: '16px', marginBottom: '20px' }}>Quick Links</h4>
-                        <ul style={{ listStyle: 'none', color: 'rgba(255,255,255,0.6)', gap: '10px', display: 'flex', flexDirection: 'column' }}>
-                            <li><a href="#home" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Home</a></li>
-                            <li><a href="#line-up" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Line Up</a></li>
-                            <li><Link to="/tickets" style={{ transition: 'color 0.2s', color: 'rgba(255,255,255,0.6)' }}>Tickets</Link></li>
+                        <h4 style={{ color: '#fff', fontSize: '18px', marginBottom: '20px', fontFamily: 'var(--font-serif)', letterSpacing: '1px' }}>Quick Links</h4>
+                        <ul style={{ listStyle: 'none', color: 'rgba(255,255,255,0.6)', gap: '12px', display: 'flex', flexDirection: 'column', fontSize: '14px' }}>
+                            <li><a href="#home" className="footer-link">Home</a></li>
+                            <li><Link to="/about" className="footer-link">Our Story</Link></li>
+                            <li><a href="#line-up" className="footer-link">Line Up</a></li>
+                            <li><Link to="/tickets" className="footer-link">Buy Tickets</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 style={{ color: '#fff', fontSize: '16px', marginBottom: '20px' }}>Follow Us</h4>
+                        <h4 style={{ color: '#fff', fontSize: '18px', marginBottom: '20px', fontFamily: 'var(--font-serif)', letterSpacing: '1px' }}>Connect</h4>
                         <div style={{ display: 'flex', gap: '15px' }}>
-                            <a href="#" style={{ color: 'var(--color-gold)', display: 'block', padding: '10px', background: 'rgba(201,152,46,0.15)', borderRadius: '50%' }}><MessageCircle size={20} /></a>
-                            <a href="#" style={{ color: 'var(--color-gold)', display: 'block', padding: '10px', background: 'rgba(201,152,46,0.15)', borderRadius: '50%' }}><Camera size={20} /></a>
-                            <a href="#" style={{ color: 'var(--color-gold)', display: 'block', padding: '10px', background: 'rgba(201,152,46,0.15)', borderRadius: '50%' }}><Globe size={20} /></a>
+                            {[MessageCircle, Camera, Globe].map((Icon, i) => (
+                                <a key={i} href="#" style={{ 
+                                    color: 'var(--color-gold)', 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center',
+                                    width: '45px', 
+                                    height: '45px', 
+                                    background: 'rgba(255,255,255,0.03)', 
+                                    borderRadius: '12px',
+                                    border: '1px solid rgba(201,152,46,0.2)',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'rgba(201,152,46,0.1)';
+                                    e.currentTarget.style.transform = 'translateY(-3px)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }}
+                                >
+                                    <Icon size={20} />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>

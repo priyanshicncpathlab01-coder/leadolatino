@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import bgVideo from '../assets/lol vid.mp4';
+import { Bold } from 'lucide-react';
 
 const Hero = () => {
     return (
@@ -43,52 +44,56 @@ const Hero = () => {
                 ))}
             </div>
 
-            <div className="container" style={{ textAlign: 'center', zIndex: 1, position: 'relative' }}>
+            <div className="container" style={{ textAlign: 'center', zIndex: 1, position: 'relative', paddingTop: '80px' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
                 >
-                    <div style={{ display: 'inline-block', marginBottom: '20px' }} className="animate-float">
-                        <span style={{ color: 'var(--color-gold)', fontSize: '40px' }}>⚜️</span>
-                    </div>
 
-                    <h2 style={{
-                        color: 'var(--color-gold)',
-                        letterSpacing: '5px',
-                        textTransform: 'uppercase',
-                        fontSize: '14px',
-                        marginBottom: '10px',
-                        textShadow: '0 1px 4px rgba(0,0,0,0.3)'
-                    }}>
-                        India World Dance Congress
-                    </h2>
 
                     <h1 style={{
-                        fontSize: 'clamp(24px, 4vw, 42px)',
+                        color: 'var(--color-gold)',
+                        letterSpacing: '8px',
+                        textTransform: 'uppercase',
+                        fontSize: 'clamp(48px, 10vw, 90px)',
+                        marginBottom: '30px',
+                        textShadow: '0 4px 15px rgba(0,0,0,0.6)',
+                        fontWeight: '800',
+                        fontFamily: "var(--font-serif)",
+                        lineHeight: '1.1'
+                    }}>
+                        India World Dance Congress
+                    </h1>
+
+                    <h2 style={{
+                        fontSize: '16px',
                         margin: '20px 0',
                         background: 'linear-gradient(to right, #fff, var(--color-gold-light))',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
                         color: 'transparent',
                         lineHeight: '1.2',
-                        fontWeight: '300',
-                        letterSpacing: '4px',
+                        fontWeight: '600',
+                        letterSpacing: '5px',
                         textTransform: 'uppercase'
                     }}>
                         Welcome to the Luxury Dance
-                    </h1>
+                    </h2>
 
-                    <p style={{
-                        maxWidth: '600px',
-                        margin: '0 auto 250px',
-                        color: 'rgba(255,255,255,0.85)',
-                        fontSize: '18px',
-                        textShadow: '0 1px 4px rgba(0,0,0,0.2)',
-                        lineHeight: '1.6'
+                    <h3 style={{
+                        maxWidth: '800px',
+                        margin: '0 auto 80px',
+                        color: '#fff',
+                        fontSize: 'clamp(32px, 6vw, 48px)',
+                        fontFamily: 'var(--font-sans)',
+                        letterSpacing: '3px',
+                        fontWeight: '900',
+                        textShadow: '0 0 20px rgba(212, 175, 55, 0.6)',
+                        textTransform: 'uppercase'
                     }}>
-                        Experience the ultimate dance festival in India. World-class performances, workshops, and luxury.
-                    </p>
+                        17 to 21 December 2026
+                    </h3>
 
                     <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <Link to="/tickets" className="btn-gold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px' }}>Buy Tickets</Link>

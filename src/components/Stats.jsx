@@ -186,8 +186,8 @@ const Stats = () => {
                     backface-visibility: hidden;
                     display: flex;
                     flex-direction: column;
-                    alignItems: center;
-                    justifyContent: center;
+                    align-items: center;
+                    justify-content: center;
                     gap: 16px;
                     padding: 30px 20px;
                     border-radius: 24px;
@@ -231,7 +231,7 @@ const Stats = () => {
                     height: 80px;
                     display: flex;
                     align-items: center;
-                    justifyContent: center;
+                    justify-content: center;
                 }
 
                 .stat-icon-inner {

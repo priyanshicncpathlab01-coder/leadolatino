@@ -4,8 +4,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Showcase from './components/Showcase';
-import LineUp from './components/LineUp';
 import Features from './components/Features';
+import ArtistCarousel from './components/ArtistCarousel';
 import Tickets from './components/Tickets';
 import Footer from './components/Footer';
 import TicketsPage from './pages/TicketsPage';
@@ -13,8 +13,8 @@ import WorkshopsPage from './pages/WorkshopsPage';
 import AboutPage from './pages/AboutPage';
 import JackAndJillPage from './pages/JackAndJillPage';
 import ScrollToTop from './components/ScrollToTop';
-import bgVideo from './assets/lol vid.mp4';
-//import About from './components/About';
+import About from './components/About';
+import LineUpPage from './pages/LineUpPage';
 
 function HomePage() {
   return (
@@ -22,11 +22,11 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Features/>
         <Tickets />
+        <Features />
+        <ArtistCarousel />
         <Showcase />
-        <LineUp />
-        <Stats/>
+        <Stats />
       </main>
       <Footer />
     </div>
@@ -43,6 +43,7 @@ function App() {
         <Route path="/workshops" element={<WorkshopsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jack-and-jill" element={<JackAndJillPage />} />
+        <Route path="/lineup" element={<LineUpPage/>}/>
       </Routes>
     </Router>
   );

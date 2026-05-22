@@ -73,7 +73,7 @@ const Hero = () => {
                         border: 'none',
                         pointerEvents: 'none',
                         objectFit: 'cover',
-                        filter: 'brightness(0.7) contrast(1.1)',
+                        filter: 'brightness(0.85) contrast(1.05)',
                         zIndex: 2
                     }}
                 />
@@ -81,7 +81,7 @@ const Hero = () => {
             <div style={{
                 position: 'absolute',
                 top: 0, left: 0, right: 0, bottom: 0,
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(10, 8, 6, 0.9) 100%)',
+                background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(10, 8, 6, 0.65) 100%)',
                 zIndex: 1,
             }} />
 
@@ -151,14 +151,14 @@ const Hero = () => {
                             textTransform: 'uppercase',
                             fontSize: 'clamp(40px, 12vw, 120px)',
                             marginBottom: '30px',
-                            fontWeight: '700',
+                            fontWeight: '900',
                             fontFamily: "var(--font-serif)",
                             lineHeight: '0.95',
                             letterSpacing: '-1px',
-                            background: 'linear-gradient(135deg, var(--color-gold-light, #f3e5ab) 0%, var(--color-gold, #d4af37) 50%, var(--color-gold-dark, #9e7720) 100%)',
+                            background: 'linear-gradient(135deg, var(--color-gold-light, #e4cb66) 0%, var(--color-gold, #d4af37) 50%, var(--color-gold-dark, #9e7720) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            textShadow: '0 15px 40px rgba(212, 175, 55, 0.25)',
+                            textShadow: '0 15px 40px rgba(29, 29, 28, 0.25)',
                             padding: '0 10px'
                         }}>
                         Lead O Latino <br />

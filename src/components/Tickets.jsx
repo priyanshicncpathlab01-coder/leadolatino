@@ -47,8 +47,8 @@ const Tickets = () => {
             
             popular: true,
             isGold: true,
-            gradient: 'linear-gradient(145deg, #f5d97a, #c9982e, #9e7720)',
-            borderColor: '#f5d97a',
+            gradient: 'linear-gradient(#a07f14)',
+            borderColor: '#a07f14',
             color: '#1a1a1a',
             titleBg: 'transparent',
             titleColor: '#1a1a1a',

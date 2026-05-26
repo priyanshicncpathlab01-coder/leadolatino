@@ -8,7 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about' || location.pathname === '/jack-and-jill' || location.pathname === '/lineup';
+    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about' || location.pathname === '/jack-and-jill' || location.pathname === '/lineup' || location.pathname === '/venue';
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);

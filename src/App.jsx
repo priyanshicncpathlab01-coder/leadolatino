@@ -10,6 +10,7 @@ import Tickets from './components/Tickets';
 import Footer from './components/Footer';
 import TicketsPage from './pages/TicketsPage';
 import WorkshopsPage from './pages/WorkshopsPage';
+import WorkshopSchedulePage from './pages/WorkshopSchedulePage';
 import AboutPage from './pages/AboutPage';
 import JackAndJillPage from './pages/JackAndJillPage';
 import VenuePage from './pages/VenuePage';
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/tickets" element={<TicketsPage />} />
         <Route path="/workshops" element={<WorkshopsPage />} />
+        <Route path="/workshop-schedule" element={<WorkshopSchedulePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jack-and-jill" element={<JackAndJillPage />} />
         <Route path="/lineup" element={<LineUpPage/>}/>

@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
-import workshopBg from '../assets/workshop_bg.png';
-import lineupBg from '../assets/lineup_bg.png';
+ 
+import workshopBg from '../assets/surajmegha.jpeg';
+import lineupBg from '../assets/2.jpg';
 import ticketsBg from '../assets/tickets_bg.png';
-import galleryBg from '../assets/gallery_bg.png';
-
+import galleryBg from '../assets/6.jpg';
+ 
 const sections = [
     {
         id: 'workshops',
@@ -44,16 +44,16 @@ const sections = [
         subtitle: 'The Ultimate Battle',
         description: 'Experience the thrill of the most anticipated competition of the festival. Showcase your skill, musicality, and connection in our official Jack & Jill battles.',
         cta: 'Learn More',
-        image: galleryBg, // Keeping the image for now as it's a good generic dance image
+        image: galleryBg,
         icon: '🏆',
         features: ['Cash Prizes', 'International Judges', 'Social Connection'],
     },
 ];
-
+ 
 const ShowcaseCard = ({ section, index }) => {
     const cardRef = useRef(null);
     const isInView = useInView(cardRef, { once: true, margin: '-100px' });
-
+ 
     return (
         <motion.div
             ref={cardRef}
@@ -64,10 +64,19 @@ const ShowcaseCard = ({ section, index }) => {
         >
             <div className="showcase-image-wrapper">
                 <div className="showcase-image-container">
-                    <img src={section.image} alt={section.title} className="showcase-image" />
+                    <img
+                        src={section.image}
+                        alt={section.title}
+                        className="showcase-image"
+                        style={
+                            section.id === 'workshops'
+                                ? { objectFit: 'contain', objectPosition: 'center' }
+                                : { objectFit: 'cover', objectPosition: 'center' }
+                        }
+                    />
                 </div>
             </div>
-
+ 
             <div className="showcase-content">
                 <span className="showcase-subtitle">{section.subtitle}</span>
                 <h3 className="showcase-title">{section.title}</h3>
@@ -83,7 +92,7 @@ const ShowcaseCard = ({ section, index }) => {
                         </div>
                     ))}
                 </div>
-
+ 
                 <div className="showcase-cta">
                     {(section.id === 'tickets' || section.id === 'jack-and-jill') ? (
                         <Link
@@ -107,7 +116,7 @@ const ShowcaseCard = ({ section, index }) => {
         </motion.div>
     );
 };
-
+ 
 const Showcase = () => {
     return (
         <section id="showcase" className="showcase-section">
@@ -123,21 +132,21 @@ const Showcase = () => {
                     <h2 className="showcase-header-title shimmer-text">What Awaits You</h2>
                     <div className="showcase-header-line" />
                 </motion.div>
-
+ 
                 <div className="showcase-cards">
                     {sections.map((section, i) => (
                         <ShowcaseCard key={section.id} section={section} index={i} />
                     ))}
                 </div>
             </div>
-
+ 
             <style dangerouslySetInnerHTML={{ __html: `
                 .showcase-section {
                     padding: 140px 0 100px;
                     background: var(--color-bg-main);
                     position: relative;
                 }
-
+ 
                 .shimmer-text {
                     background: linear-gradient(
                         to right,
@@ -151,16 +160,16 @@ const Showcase = () => {
                     color: transparent;
                     animation: shimmer 4s linear infinite;
                 }
-
+ 
                 @keyframes shimmer {
                     to { background-position: 200% center; }
                 }
-
+ 
                 .showcase-header {
                     text-align: center;
                     margin-bottom: 90px;
                 }
-
+ 
                 .showcase-header-tag {
                     display: inline-block;
                     font-family: var(--font-sans);
@@ -175,14 +184,14 @@ const Showcase = () => {
                     border-radius: 30px;
                     margin-bottom: 20px;
                 }
-
+ 
                 .showcase-header-title {
                     font-family: var(--font-serif);
                     font-size: clamp(36px, 6vw, 54px);
                     margin-bottom: 20px;
                     font-weight: 600;
                 }
-
+ 
                 .showcase-header-line {
                     width: 80px;
                     height: 3px;
@@ -190,13 +199,13 @@ const Showcase = () => {
                     margin: 0 auto;
                     border-radius: 3px;
                 }
-
+ 
                 .showcase-cards {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     gap: 40px;
                 }
-
+ 
                 .showcase-card {
                     display: flex;
                     flex-direction: column;
@@ -208,36 +217,35 @@ const Showcase = () => {
                     transition: all 0.5s ease;
                     height: 100%;
                 }
-
+ 
                 .showcase-card:hover {
                     transform: translateY(-15px);
                     box-shadow: 0 30px 70px rgba(201, 152, 46, 0.15);
                     border-color: var(--color-border-gold);
                 }
-
+ 
                 .showcase-image-wrapper {
                     position: relative;
                     width: 100%;
                     aspect-ratio: 16 / 10;
                     overflow: hidden;
                 }
-
+ 
                 .showcase-image-container {
                     width: 100%;
                     height: 100%;
                 }
-
+ 
                 .showcase-image {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
                     transition: transform 0.8s ease;
                 }
-
+ 
                 .showcase-card:hover .showcase-image {
                     transform: scale(1.1);
                 }
-
+ 
                 .showcase-content {
                     padding: 40px;
                     display: flex;
@@ -245,7 +253,7 @@ const Showcase = () => {
                     flex-grow: 1;
                     gap: 15px;
                 }
-
+ 
                 .showcase-subtitle {
                     font-size: 13px;
                     font-weight: 700;
@@ -253,7 +261,7 @@ const Showcase = () => {
                     text-transform: uppercase;
                     color: var(--color-gold);
                 }
-
+ 
                 .showcase-title {
                     font-family: var(--font-serif);
                     font-size: 32px;
@@ -261,46 +269,46 @@ const Showcase = () => {
                     color: var(--color-text-heading);
                     font-weight: 700;
                 }
-
+ 
                 .showcase-divider {
                     width: 50px;
                     height: 3px;
                     background: var(--color-gold);
                     border-radius: 3px;
                 }
-
+ 
                 .showcase-description {
                     font-size: 16px;
                     line-height: 1.7;
                     color: var(--color-text-muted);
                     margin-bottom: 10px;
                 }
-
+ 
                 .showcase-features {
                     display: flex;
                     flex-direction: column;
                     gap: 12px;
                     margin-bottom: 25px;
                 }
-
+ 
                 .showcase-feature-item {
                     display: flex;
                     align-items: center;
                     gap: 12px;
                 }
-
+ 
                 .showcase-feature-dot {
                     width: 8px;
                     height: 2px;
                     background: var(--color-gold);
                 }
-
+ 
                 .showcase-cta {
                     margin-top: auto;
                     width: 100%;
                     text-align: center;
                 }
-
+ 
                 /* Responsive */
                 @media (max-width: 900px) {
                     .showcase-cards {
@@ -308,25 +316,16 @@ const Showcase = () => {
                         gap: 30px;
                     }
                 }
-
-                @media (max-width: 480px) {
-                    .showcase-section {
-                        padding: 80px 0 60px;
-                    }
-                    .showcase-header {
-                        margin-bottom: 50px;
-                    }
-                    .showcase-content {
-                        padding: 30px 20px;
-                    }
-                }
-
+ 
                 @media (max-width: 480px) {
                     .showcase-section {
                         padding: 80px 0 60px;
                     }
                     .showcase-header {
                         margin-bottom: 60px;
+                    }
+                    .showcase-content {
+                        padding: 30px 20px;
                     }
                     .showcase-cards {
                         gap: 60px;
@@ -336,5 +335,6 @@ const Showcase = () => {
         </section>
     );
 };
-
+ 
 export default Showcase;
+ 

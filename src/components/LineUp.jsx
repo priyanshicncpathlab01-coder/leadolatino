@@ -227,7 +227,7 @@ const LineUp = () => {
                 <div style={{ textAlign: 'center', marginBottom: '100px', position: 'relative' }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                         <span style={{ 
-                            color: 'var(--color-gold)', 
+                            color: '#000000', 
                             fontSize: '12px', 
                             fontWeight: '800', 
                             letterSpacing: '5px', 
@@ -238,16 +238,18 @@ const LineUp = () => {
                         }}>
                             The Star-Studded
                         </span>
-                        <h2 className="premium-shimmer-text" style={{ 
-                            fontSize: 'clamp(40px, 8vw, 72px)', 
-                            fontFamily: 'var(--font-serif)', 
-                            color: 'var(--color-text-heading)', 
-                            marginBottom: '25px', 
-                            fontWeight: '400',
-                            lineHeight: 1
-                        }}>
-                            Event Line Up
-                        </h2>
+                       <h2 className="premium-shimmer-text" style={{ 
+    fontSize: 'clamp(48px, 9vw, 96px)',
+    fontFamily: 'var(--font-serif)',
+    color: '#000000',
+    marginBottom: '25px',
+    fontWeight: '900',
+    lineHeight: 1,
+    letterSpacing: '-0.02em',
+    WebkitTextFillColor: '#000000'
+}}>
+    Event Line Up
+</h2>
                         <div style={{ width: '80px', height: '1px', background: 'var(--color-gold)', margin: '0 auto', opacity: 0.5 }} />
                     </motion.div>
                 </div>
@@ -399,20 +401,14 @@ const LineUp = () => {
                     pointer-events: none;
                 }
                 .orb-1 { top: -10%; left: -10%; background: var(--color-gold); }
-                .orb-2 { bottom: -10%; right: -10%; background: #c9982e; }
+                .orb-2 { bottom: -10%; right: -10%; background: #020202; }
 
-                .premium-shimmer-text {
-                    background: linear-gradient(
-                        90deg, 
-                        #fff 0%, 
-                        var(--color-gold) 50%, 
-                        #fff 100%
-                    );
-                    background-size: 200% auto;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    animation: textShimmer 8s linear infinite;
-                }
+               .premium-shimmer-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #000000;
+    animation: none;
+}
 
                 @keyframes textShimmer {
                     to { background-position: 200% center; }

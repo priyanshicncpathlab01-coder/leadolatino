@@ -173,11 +173,11 @@ const ArtistCarousel = () => {
                 .artist-carousel-tag {
                     display: inline-block;
                     font-family: var(--font-sans);
-                    font-size: 13px;
+                    font-size: 23px;
                     font-weight: 600;
                     letter-spacing: 3px;
                     text-transform: uppercase;
-                    color: var(--color-gold-dark);
+                    color: black;
                     background: var(--color-gold-subtle);
                     border: 1px solid var(--color-border-gold);
                     padding: 8px 24px;

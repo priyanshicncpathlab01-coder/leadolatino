@@ -142,7 +142,8 @@ const About = () => {
                     position: relative;
                     width: 100%;
                     aspect-ratio: 16/9;
-                    background: #000;
+                     min-height: 400px;
+                    background: #180606;
                     overflow: hidden;
                 }
 
@@ -399,8 +400,18 @@ const About = () => {
                     }
                     .visual-column {
                         margin-top: 0;
+
                     }
-                }
+                         .about-hero {
+        aspect-ratio: unset;
+        height: 60vh;
+        min-height: 300px;
+    }
+}
+                
+                    
+    
+
             ` }} />
         </section>
     );

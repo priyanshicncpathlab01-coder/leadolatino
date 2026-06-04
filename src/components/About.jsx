@@ -52,8 +52,8 @@ const About = () => {
 
                     <div className="slide-indicators">
                         {images.map((_, i) => (
-                            <div 
-                                key={i} 
+                            <div
+                                key={i}
                                 className={`indicator ${i === currentIndex ? 'active' : ''}`}
                                 onClick={() => setCurrentIndex(i)}
                             />
@@ -65,7 +65,7 @@ const About = () => {
             <div className="about-narrative">
                 <div className="container">
                     <div className="narrative-grid">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -74,10 +74,12 @@ const About = () => {
                         >
                             <h2 className="narrative-title" style={{ fontSize: 'clamp(28px, 4vw, 40px)' }}>About Lead O’Latino World Congress</h2>
                             <p className="narrative-p">
-                                Lead O’Latino World Congress is India’s premier Afro-Latin dance festival, bringing together the global Salsa, Bachata, Kizomba, and Zouk community under one roof. Now in its 6th edition, the festival has grown into one of the most anticipated international dance events, attracting artists, performers, and social dancers from across the world.
+                                Where Passion Meets Prestige. Where the World Dances as One.
+
+                                Lead O’Latino World Congress is more than a dance festival—it is a grand celebration of culture, artistry, and human connection. Recognized as India's premier Afro-Latin dance experience, the congress brings together the vibrant worlds of Salsa, Bachata, Kizomba, and Zouk in an atmosphere of elegance, excellence, and international unity.
                             </p>
                             <p className="narrative-p">
-                                With a powerful lineup of 60+ international artists and 50+ national artists, Lead O’Latino is more than just a festival — it is a complete cultural experience designed for dancers of all levels, from beginners to professionals.
+                                Now proudly entering its 6th edition, Lead O’Latino has established itself as one of Asia's most prestigious dance gatherings, welcoming world-renowned artists, championship performers, instructors, DJs, competitors, and passionate social dancers from across the globe. Every edition is carefully crafted to deliver an experience that is inspiring, transformative, and unforgettable.
                             </p>
                             <p className="narrative-p">
                                 Organised by renowned dancers and community leaders Suraj Verma and Aditya Saini, Lead O’Latino is driven by a clear vision — to take the Indian Latin dance community to greater heights and make India a powerful presence on the global Latin dance map.
@@ -97,8 +99,7 @@ const About = () => {
                                 </ul>
                             </div>
                             <p className="narrative-p">
-                                What makes Lead O’Latino truly unique is its focus on community, quality, and global exposure. The festival creates a space where dancers can learn, connect, perform, and grow — all while experiencing the energy of a world-class Latin dance environment in India.
-                            </p>
+                                Our aspiration is bold: to build the largest, most influential, and most celebrated Afro-Latin dance congress in Asia. We envision a future where dancers from every continent travel to India not only to learn and perform, but to become part of a truly global movement that inspires creativity, cultural exchange, and artistic excellence.                            </p>
                             <p className="narrative-p">
                                 Whether you are looking to improve your dance skills, perform on an international stage, or simply be part of an unforgettable dance celebration, Lead O’Latino World Congress offers an experience like no other.
                             </p>
@@ -108,7 +109,7 @@ const About = () => {
                         </motion.div>
 
                         <div className="visual-column">
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
@@ -135,7 +136,8 @@ const About = () => {
                 </div>
             </div>
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .about-hero {
                     position: relative;
                     width: 100%;
@@ -190,7 +192,7 @@ const About = () => {
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 6px;
-                    color: var(--color-gold);
+                    color: #fff;
                     margin-bottom: 20px;
                 }
 
@@ -224,7 +226,7 @@ const About = () => {
                 .indicator {
                     width: 40px;
                     height: 2px;
-                    background: rgba(255,255,255,0.2);
+                    background: rgba(70, 65, 65, 0.2);
                     cursor: pointer;
                     transition: all 0.4s ease;
                 }
@@ -269,7 +271,7 @@ const About = () => {
 
                 .narrative-p {
                     font-size: 17px;
-                    color: var(--color-text-muted);
+                    color: #000000;
                     line-height: 1.8;
                     margin-bottom: 25px;
                 }

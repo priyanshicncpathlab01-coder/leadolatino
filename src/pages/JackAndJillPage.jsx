@@ -10,6 +10,7 @@ const RegistrationModal = ({ isOpen, onClose, type }) => {
         fullName: '',
         gender: '',
         mobile: '',
+        ticketId:'',
         email: '',
         city: '',
         instagram: '',

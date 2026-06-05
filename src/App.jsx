@@ -14,9 +14,11 @@ import WorkshopSchedulePage from './pages/WorkshopSchedulePage';
 import AboutPage from './pages/AboutPage';
 import JackAndJillPage from './pages/JackAndJillPage';
 import VenuePage from './pages/VenuePage';
+import TransferFacilityPage from './pages/TransferFacilityPage';
 import ScrollToTop from './components/ScrollToTop';
 import About from './components/About';
 import LineUpPage from './pages/LineUpPage';
+import LivePerformancesPage from './pages/LivePerformancesPage';
 
 function HomePage() {
   return (
@@ -47,7 +49,9 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jack-and-jill" element={<JackAndJillPage />} />
         <Route path="/lineup" element={<LineUpPage/>}/>
+        <Route path="/live-performances" element={<LivePerformancesPage />} />
         <Route path="/venue" element={<VenuePage />} />
+        <Route path="/transfer-facility" element={<TransferFacilityPage />} />
       </Routes>
     </Router>
   );

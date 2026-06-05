@@ -76,23 +76,25 @@ const About = () => {
                             <p className="narrative-p">
                                 Where Passion Meets Prestige. Where the World Dances as One.
 
-                                Lead O’Latino World Congress is more than a dance festival—it is a grand celebration of culture, artistry, and human connection. Recognized as India's premier Afro-Latin dance experience, the congress brings together the vibrant worlds of Salsa, Bachata, Kizomba, and Zouk in an atmosphere of elegance, excellence, and international unity.
+                                Lead O’Latino World Congress is more than a dance festival—it is a magnificent celebration of culture, artistry, and human connection. Recognized as India's premier Afro-Latin dance experience, the congress unites the vibrant worlds of Salsa, Bachata, Kizomba, and Zouk in an atmosphere defined by elegance, excellence, and international unity.
                             </p>
                             <p className="narrative-p">
-                                Now proudly entering its 6th edition, Lead O’Latino has established itself as one of Asia's most prestigious dance gatherings, welcoming world-renowned artists, championship performers, instructors, DJs, competitors, and passionate social dancers from across the globe. Every edition is carefully crafted to deliver an experience that is inspiring, transformative, and unforgettable.
+                                Now proudly entering its 6th edition, Lead O’Latino has evolved into one of Asia's most prestigious and rapidly growing dance congresses, attracting world-renowned artists, championship performers, instructors, DJs, competitors, and passionate social dancers from across the globe. Every edition is carefully curated to create an experience that is inspiring, transformative, and truly unforgettable.
                             </p>
                             <p className="narrative-p">
-                                Organised by renowned dancers and community leaders Suraj Verma and Aditya Saini, Lead O’Latino is driven by a clear vision — to take the Indian Latin dance community to greater heights and make India a powerful presence on the global Latin dance map.
+                                Organised by celebrated dancers and community leaders Suraj Verma and Aditya Saini, Lead O’Latino is driven by a bold vision—to elevate the Indian Latin dance community and establish India as a major destination on the global Afro-Latin dance map.
+                                This year, the congress proudly welcomes 100+ international artists and performers representing countries from every corner of the world, including Russia, Kazakhstan, Dubai (UAE), Turkey, China, Thailand, Sri Lanka, France, Spain, London (UK), Latin America, Poland, Belgium, Italy, and many other nations across Europe and beyond. Their presence transforms Lead O’Latino into a truly global celebration where cultures, styles, and communities come together through the universal language of dance.
                             </p>
                             <div className="venue-highlight">
-                                Hosted at a 5-star luxury venue, the event features:
-                            </div>
+Hosted at a luxurious 5-star venue, the event offers an unparalleled experience featuring:                            </div>
                             <div className="narrative-p">
                                 <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
-                                    <li>80+ high-quality dance workshops</li>
-                                    <li>Masterclasses by world-renowned artists</li>
-                                    <li>7+ social dance nights</li>
-                                    <li>Live concert experiences</li>
+                                    <li>100+ International Artists</li>
+                                                                        <li>200+ National Artists</li>
+
+                                    <li>80+ Premium Dance Workshops</li>
+                                    <li>7+ Electrifying Social Dance Nights</li>
+                                    <li>Spectacular Live Concert Experiences</li>
                                     <li>International-level competitions & Jack and Jill battles</li>
                                     <li>Bootcamps and performance opportunities</li>
                                     <li>Themed parties, VIP experiences, and networking spaces</li>
@@ -141,7 +143,8 @@ const About = () => {
                 .about-hero {
                     position: relative;
                     width: 100%;
-                    aspect-ratio: 16/9;
+                    height:100vh;
+                    
                      min-height: 400px;
                     background: #180606;
                     overflow: hidden;
@@ -400,17 +403,71 @@ const About = () => {
                     }
                     .visual-column {
                         margin-top: 0;
-
                     }
-                         .about-hero {
-        aspect-ratio: unset;
-        height: 60vh;
-        min-height: 300px;
-    }
-}
-                
-                    
-    
+                    .about-hero {
+                        aspect-ratio: unset;
+                        height: 60vh;
+                        min-height: 300px;
+                    }
+                    .slide-indicators {
+                        bottom: 24px;
+                        gap: 10px;
+                    }
+                    .indicator {
+                        width: 28px;
+                    }
+                    .indicator.active {
+                        width: 50px;
+                    }
+                    .subtitle {
+                        letter-spacing: 3px;
+                        font-size: 11px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .about-hero {
+                        height: 55vh;
+                        min-height: 280px;
+                    }
+                    .hero-content {
+                        width: 95%;
+                        padding: 0 8px;
+                    }
+                    .subtitle {
+                        letter-spacing: 2px;
+                        font-size: 10px;
+                        margin-bottom: 12px;
+                    }
+                    .title {
+                        font-size: clamp(32px, 10vw, 56px);
+                        margin-bottom: 14px;
+                    }
+                    .slide-indicators {
+                        bottom: 16px;
+                        gap: 8px;
+                    }
+                    .indicator {
+                        width: 22px;
+                        height: 2px;
+                    }
+                    .indicator.active {
+                        width: 38px;
+                    }
+                    .about-narrative {
+                        padding: 60px 0;
+                    }
+                    .narrative-grid {
+                        gap: 40px;
+                    }
+                    .venue-highlight {
+                        font-size: 16px;
+                        padding: 12px 16px;
+                    }
+                    .narrative-p {
+                        font-size: 15px;
+                    }
+                }
 
             ` }} />
         </section>

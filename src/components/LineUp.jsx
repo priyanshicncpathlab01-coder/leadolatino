@@ -4,76 +4,76 @@ import { motion } from 'framer-motion';
 const imageModules = import.meta.glob('../assets/All Artist Pictures - Same background/*.{png,jpg,jpeg,PNG}', { eager: true });
 
 const categories = [
-    { id: 'salsa',   title: 'Salsa Maestros' },
-    { id: 'bachata', title: 'Bachata Sensualists' },
+    { id: 'salsa', title: 'Salsa Artists' },
+    { id: 'bachata', title: 'Bachata Artists' },
     { id: 'kizomba', title: 'Kizomba Artists' },
-    { id: 'dj',      title: 'The Sound Architects' },
+    { id: 'dj', title: 'World Class Djs' },
     { id: 'concert', title: 'Live Performance' }
 ];
 
 const displayNames = {
-    'Aitor & Angelica':                    'Aitor & Angélica',
-    'Daimy & Valeria':                     'Daimy & Valleria',
-    'Antonio Berardi & Jasmina Berardi':   'Antonio Berardi & Jasmina Berardi',
-    'Svetlana(golden)':                    'Svetlana',
-    'Tony Lozano':                         'Tony Lozano'
+    'Aitor & Angelica': 'Aitor & Angélica',
+    'Daimy & Valeria': 'Daimy & Valleria',
+    'Antonio Berardi & Jasmina Berardi': 'Antonio Berardi & Jasmina Berardi',
+    'Svetlana(golden)': 'Svetlana',
+    'Tony Lozano': 'Tony Lozano'
 };
 
 const bachataOrder = {
-    'sergio & elena':    1,
-    'aitor & angelica':  2,
+    'sergio & elena': 1,
+    'aitor & angelica': 2,
     'burak & estefania': 3,
-    'magda liuzza':      4,
-    'daimy & valeria':   5,
-    'saj & emi':         6,
-    'svetlana & magzhan':7,
-    'ace fusion':        8,
-    'suraj & megha':     9,
-    'ward & niki':       10,
-    'habibi & marta':    11,
-    'david & laura':     12,
-    'yakov & lisa':      13,
-    'majka & bartek':    14,
-    'adrian & yoli':     15,
-    'gioia':             16,
-    'regina':            17,
-    'jennifer':          18,
-    'melanie':           19,
-    'dariya':            20,
-    'svetlana(golden)':  21
+    'magda liuzza': 4,
+    'daimy & valeria': 5,
+    'saj & emi': 6,
+    'svetlana & magzhan': 7,
+    'ace fusion': 8,
+    'suraj & megha': 9,
+    'ward & niki': 10,
+    'habibi & marta': 11,
+    'david & laura': 12,
+    'yakov & lisa': 13,
+    'majka & bartek': 14,
+    'adrian & yoli': 15,
+    'gioia': 16,
+    'regina': 17,
+    'jennifer': 18,
+    'melanie': 19,
+    'dariya': 20,
+    'svetlana(golden)': 21
 };
 
 const salsaOrder = {
-    'maykel fonts':                    1,
+    'maykel fonts': 1,
     'antonio berardi & jasmina berardi': 2,
-    'diego & sofia':                   3,
-    'rahina':                          4,
-    'svetlana':                        5
+    'diego & sofia': 3,
+    'rahina': 4,
+    'svetlana': 5
 };
 
 const kizombaOrder = {
-    'said & oksana':  1,
-    'ioury & eden':   2,
-    'ichigo':         3,
+    'said & oksana': 1,
+    'ioury & eden': 2,
+    'ichigo': 3,
     'adrian & carol': 4,
-    'suraj & megha':  5,
-    'melanie':        6
+    'suraj & megha': 5,
+    'melanie': 6
 };
 
 const djOrder = {
-    'dj khalid':  1,
+    'dj khalid': 1,
     'dj fofojah': 2,
-    'dj ichigo':  3,
-    'dj hajjar':  4,
-    'dj saj':     5
+    'dj ichigo': 3,
+    'dj hajjar': 4,
+    'dj saj': 5
 };
 
 const getOrder = (category, n) => {
-    if (category === 'bachata')  return bachataOrder[n] || 99;
-    if (category === 'salsa')    return salsaOrder[n]   || 99;
-    if (category === 'kizomba')  return kizombaOrder[n] || 99;
-    if (category === 'dj')       return djOrder[n]      || 99;
-    if (category === 'concert')  return 1;
+    if (category === 'bachata') return bachataOrder[n] || 99;
+    if (category === 'salsa') return salsaOrder[n] || 99;
+    if (category === 'kizomba') return kizombaOrder[n] || 99;
+    if (category === 'dj') return djOrder[n] || 99;
+    if (category === 'concert') return 1;
     return 99;
 };
 
@@ -81,69 +81,69 @@ const getOrder = (category, n) => {
 let artists = Object.entries(imageModules).map(([path, module], index) => {
     const fileName = path.replace(/\\/g, '/').split('/').pop().split('.')[0].trim();
     const n = fileName.toLowerCase();
-    let role     = 'International Artist';
+    let role = 'International Artist';
     let category = 'bachata';
 
     // --- Categorization (order matters — DJ check pehle) ---
 
     // Concert / Special Performance
     if (n.includes('tony lozano')) {
-        role     = 'Live Performance Artist';
+        role = 'Live Performance Artist';
         category = 'concert';
 
-    // DJ — ichigo explicitly exclude kiya hai
+        // DJ — ichigo explicitly exclude kiya hai
     } else if ((n.includes('fofojah') || n.includes('hajjar') || n.includes('dj'))
         && !n.includes('ichigo')) {
-        role     = 'World-Class DJ';
+        role = 'World-Class DJ';
         category = 'dj';
 
-    // Salsa
+        // Salsa
     } else if (
         n.includes('maykel') || n.includes('antonio') || n.includes('diego') ||
         n.includes('rahina') ||
         (n.includes('svetlana') && !n.includes('magzhan') && !n.includes('golden'))
     ) {
-        role     = 'Salsa Artist';
+        role = 'Salsa Artist';
         category = 'salsa';
 
-    // Kizomba
+        // Kizomba
     } else if (
-        n.includes('said')   || n.includes('oksana') ||
-        n.includes('ioury')  || n.includes('ichigo') ||
+        n.includes('said') || n.includes('oksana') ||
+        n.includes('ioury') || n.includes('ichigo') ||
         n.includes('adrian & carol') ||
-        n.includes('suraj')  || n.includes('megha')
+        n.includes('suraj') || n.includes('megha')
     ) {
-        role     = 'Kizomba Artist';
+        role = 'Kizomba Artist';
         category = 'kizomba';
 
-    // Bachata
+        // Bachata
     } else if (
-        n.includes('sergio')  || n.includes('burak')    || n.includes('aitor')  ||
+        n.includes('sergio') || n.includes('burak') || n.includes('aitor') ||
         n.includes('ace fusion') || n.includes('daimy') || n.includes('habibi') ||
-        n.includes('ward')    || n.includes('david')    || n.includes('majka')  ||
+        n.includes('ward') || n.includes('david') || n.includes('majka') ||
         n.includes('adrian & yoli') || n.includes('regina') || n.includes('gioia') ||
-        n.includes('dariya')  || n.includes('jennifer') || n.includes('assel')  ||
-        n.includes('svetlana')|| n.includes('magda')    || n.includes('saj')    ||
-        n.includes('emi')     || n.includes('magzhan')  || n.includes('niki')   ||
+        n.includes('dariya') || n.includes('jennifer') || n.includes('assel') ||
+        n.includes('svetlana') || n.includes('magda') || n.includes('saj') ||
+        n.includes('emi') || n.includes('magzhan') || n.includes('niki') ||
         n.includes('melanie') || n.includes('yakov')
     ) {
-        role     = 'Bachata Artist';
+        role = 'Bachata Artist';
         category = 'bachata';
     }
 
     // Emcee override
     if (n.includes('emcee')) {
-        role     = 'Official Emcee';
+        role = 'Official Emcee';
         category = 'dj';
     }
 
     return {
-        id:            index + 1,
-        name:          displayNames[fileName] || fileName,
+        id: index + 1,
+        name: displayNames[fileName] || fileName,
         role,
         category,
-        image:         module.default || module,
-        order:         getOrder(category, n),
+        image: module.default || module,
+        order: getOrder(category, n),
         originalIndex: index
     };
 });
@@ -152,10 +152,10 @@ const surajMegha = artists.find(a => a.name.toLowerCase().includes('suraj'));
 if (surajMegha) {
     artists.push({
         ...surajMegha,
-        id:       9999,
+        id: 9999,
         category: 'bachata',
-        role:     'Bachata & Kizomba',
-        order:    bachataOrder['suraj & megha'] || 9
+        role: 'Bachata & Kizomba',
+        order: bachataOrder['suraj & megha'] || 9
     });
 }
 
@@ -164,20 +164,20 @@ const ichigo = artists.find(a => a.name.toLowerCase().includes('ichigo'));
 if (ichigo) {
     artists.push({
         ...ichigo,
-        id:       9998,
+        id: 9998,
         category: 'dj',
-        role:     'Kizomba Artist & DJ',
-        order:    djOrder['dj ichigo'] || 3
+        role: 'Kizomba Artist & DJ',
+        order: djOrder['dj ichigo'] || 3
     });
 }
 const melanie = artists.find(a => a.name.toLowerCase().includes('melanie'));
 if (melanie) {
     artists.push({
         ...melanie,
-        id:       9997,
+        id: 9997,
         category: 'kizomba',
-        role:     'Bachata & Kizomba',
-        order:    kizombaOrder['melanie'] || 6   // kizomba mein 6th position
+        role: 'Bachata & Kizomba',
+        order: kizombaOrder['melanie'] || 6   // kizomba mein 6th position
     });
 }
 
@@ -196,18 +196,18 @@ const LineUp = () => {
             {/* Background Creative Elements */}
             <div className="bg-grid-pattern" />
             <div className="bg-watermark">CONGRESS</div>
-            
+
             {/* Animated Particles */}
             {[...Array(15)].map((_, i) => (
-                <div 
-                    key={i} 
-                    className="gold-particle" 
-                    style={{ 
-                        left: `${Math.random() * 100}%`, 
+                <div
+                    key={i}
+                    className="gold-particle"
+                    style={{
+                        left: `${Math.random() * 100}%`,
                         top: `${Math.random() * 100}%`,
                         animationDelay: `${Math.random() * 10}s`,
                         animationDuration: `${15 + Math.random() * 10}s`
-                    }} 
+                    }}
                 />
             ))}
 
@@ -226,30 +226,30 @@ const LineUp = () => {
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div style={{ textAlign: 'center', marginBottom: '100px', position: 'relative' }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                        <span style={{ 
-                            color: '#000000', 
-                            fontSize: '12px', 
-                            fontWeight: '800', 
-                            letterSpacing: '5px', 
-                            textTransform: 'uppercase', 
-                            display: 'block', 
+                        <span style={{
+                            color: '#000000',
+                            fontSize: '12px',
+                            fontWeight: '800',
+                            letterSpacing: '5px',
+                            textTransform: 'uppercase',
+                            display: 'block',
                             marginBottom: '20px',
                             opacity: 0.8
                         }}>
                             The Star-Studded
                         </span>
-                       <h2 className="premium-shimmer-text" style={{ 
-    fontSize: 'clamp(48px, 9vw, 96px)',
-    fontFamily: 'var(--font-serif)',
-    color: '#000000',
-    marginBottom: '25px',
-    fontWeight: '900',
-    lineHeight: 1,
-    letterSpacing: '-0.02em',
-    WebkitTextFillColor: '#000000'
-}}>
-    Event Line Up
-</h2>
+                        <h2 className="premium-shimmer-text" style={{
+                            fontSize: 'clamp(48px, 9vw, 96px)',
+                            fontFamily: 'var(--font-serif)',
+                            color: '#000000',
+                            marginBottom: '25px',
+                            fontWeight: '900',
+                            lineHeight: 1,
+                            letterSpacing: '-0.02em',
+                            WebkitTextFillColor: '#000000'
+                        }}>
+                            Event Line Up
+                        </h2>
                         <div style={{ width: '80px', height: '1px', background: 'var(--color-gold)', margin: '0 auto', opacity: 0.5 }} />
                     </motion.div>
                 </div>
@@ -264,9 +264,9 @@ const LineUp = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'center', 
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
                                     marginBottom: '80px',
                                     position: 'relative'
                                 }}
@@ -280,10 +280,10 @@ const LineUp = () => {
                                     position: 'relative',
                                     zIndex: 2
                                 }}>
-                                    <h4 style={{ 
-                                        fontSize: 'clamp(32px, 5vw, 48px)', 
-                                        fontFamily: 'var(--font-sans)', 
-                                        color: '#fff', 
+                                    <h4 style={{
+                                        fontSize: 'clamp(32px, 5vw, 48px)',
+                                        fontFamily: 'var(--font-sans)',
+                                        color: '#fff',
                                         fontWeight: '900',
                                         textTransform: 'uppercase',
                                         letterSpacing: '6px',
@@ -294,14 +294,14 @@ const LineUp = () => {
                                     </h4>
                                 </div>
                                 {/* Decorative line behind */}
-                                <div style={{ 
-                                    position: 'absolute', 
-                                    top: '50%', 
-                                    left: '0', 
-                                    right: '0', 
-                                    height: '1px', 
-                                    background: 'rgba(201, 152, 46, 0.2)', 
-                                    zIndex: 1 
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '0',
+                                    right: '0',
+                                    height: '1px',
+                                    background: 'rgba(201, 152, 46, 0.2)',
+                                    zIndex: 1
                                 }} />
                             </motion.div>
 
@@ -342,7 +342,8 @@ const LineUp = () => {
                 })}
             </div>
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .creative-section {
                     background-color: #050403; 
                     position: relative;

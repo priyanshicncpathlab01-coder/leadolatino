@@ -6,11 +6,11 @@ import logo from '../assets/Logo.PNG';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isScheduleHovered, setIsScheduleHovered] = useState(false);
-    const [isScheduleMobileOpen, setIsScheduleMobileOpen] = useState(false);
+    const [hoveredDropdown, setHoveredDropdown] = useState(null);
+    const [mobileDropdown, setMobileDropdown] = useState(null);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about' || location.pathname === '/jack-and-jill' || location.pathname === '/lineup' || location.pathname === '/venue' || location.pathname === '/workshop-schedule';
+    const isDarkPage = location.pathname === '/tickets' || location.pathname === '/workshops' || location.pathname === '/about' || location.pathname === '/jack-and-jill' || location.pathname === '/lineup' || location.pathname === '/venue' || location.pathname === '/workshop-schedule' || location.pathname === '/live-performances' || location.pathname === '/transfer-facility';
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -39,9 +39,24 @@ const Navbar = () => {
                 { name: 'Workshop Schedule', path: '/workshop-schedule' }
             ]
         },
-        { name: 'Artists', path: '/lineup', isHash: false },
+        { 
+            name: 'Lineup', 
+            path: '/lineup', 
+            isHash: false,
+            dropdown: [
+                { name: 'Live Performances', path: '/live-performances' }
+            ]
+        },
         { name: 'Tickets', path: '/tickets', isHash: false },
-        { name: 'Venue', path: '/venue', isHash: false },
+        { 
+            name: 'Venue', 
+            path: '/venue', 
+            isHash: false,
+            dropdown: [
+                { name: 'Venue', path: '/venue' },
+                { name: 'Transfer Facility', path: '/transfer-facility' }
+            ]
+        },
         { name: 'Championships', path: '/jack-and-jill', isHash: false },
         { name: 'About', path: '/about', isHash: false },
     ];
@@ -79,32 +94,46 @@ const Navbar = () => {
                             <li 
                                 key={item.name}
                                 style={{ position: 'relative' }}
-                                onMouseEnter={() => item.dropdown && setIsScheduleHovered(true)}
-                                onMouseLeave={() => item.dropdown && setIsScheduleHovered(false)}
+                                onMouseEnter={() => item.dropdown && setHoveredDropdown(item.name)}
+                                onMouseLeave={() => item.dropdown && setHoveredDropdown(null)}
                             >
                                 {item.dropdown ? (
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer', padding: '10px 0' }}>
-                                        <span style={{
-                                            textTransform: 'uppercase',
-                                            fontSize: '12px',
-                                            letterSpacing: '2px',
-                                            fontWeight: '600',
-                                            color: getTextColor(),
-                                            transition: 'all 0.3s ease',
-                                        }} className="nav-link">
-                                            {item.name}
-                                        </span>
+                                        {item.path !== '#' ? (
+                                            <Link to={item.path} style={{
+                                                textTransform: 'uppercase',
+                                                fontSize: '12px',
+                                                letterSpacing: '2px',
+                                                fontWeight: '600',
+                                                color: getTextColor(),
+                                                transition: 'all 0.3s ease',
+                                                textDecoration: 'none'
+                                            }} className="nav-link">
+                                                {item.name}
+                                            </Link>
+                                        ) : (
+                                            <span style={{
+                                                textTransform: 'uppercase',
+                                                fontSize: '12px',
+                                                letterSpacing: '2px',
+                                                fontWeight: '600',
+                                                color: getTextColor(),
+                                                transition: 'all 0.3s ease',
+                                            }} className="nav-link">
+                                                {item.name}
+                                            </span>
+                                        )}
                                         <ChevronDown 
                                             size={14} 
                                             style={{ 
                                                 color: getTextColor(), 
-                                                transform: isScheduleHovered ? 'rotate(180deg)' : 'rotate(0deg)', 
+                                                transform: hoveredDropdown === item.name ? 'rotate(180deg)' : 'rotate(0deg)', 
                                                 transition: 'transform 0.3s ease' 
                                             }} 
                                         />
                                         
                                         <AnimatePresence>
-                                            {isScheduleHovered && (
+                                            {hoveredDropdown === item.name && (
                                                 <motion.div
                                                     initial={{ opacity: 0, y: 15, scale: 0.95 }}
                                                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -263,7 +292,7 @@ const Navbar = () => {
                                     {item.dropdown ? (
                                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                             <button 
-                                                onClick={() => setIsScheduleMobileOpen(!isScheduleMobileOpen)}
+                                                onClick={() => setMobileDropdown(mobileDropdown === item.name ? null : item.name)}
                                                 style={{
                                                     background: 'none',
                                                     border: 'none',
@@ -281,18 +310,35 @@ const Navbar = () => {
                                                     width: '100%',
                                                 }}
                                             >
-                                                {item.name}
+                                                {item.path !== '#' ? (
+                                                    <Link 
+                                                        to={item.path}
+                                                        onClick={() => setIsOpen(false)}
+                                                        style={{
+                                                            color: '#fff',
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '3px',
+                                                            fontSize: '14px',
+                                                            fontWeight: '600',
+                                                            textDecoration: 'none',
+                                                        }}
+                                                    >
+                                                        {item.name}
+                                                    </Link>
+                                                ) : (
+                                                    <span>{item.name}</span>
+                                                )}
                                                 <ChevronDown 
                                                     size={16} 
                                                     style={{ 
                                                         color: 'var(--color-gold)',
-                                                        transform: isScheduleMobileOpen ? 'rotate(180deg)' : 'rotate(0deg)', 
+                                                        transform: mobileDropdown === item.name ? 'rotate(180deg)' : 'rotate(0deg)', 
                                                         transition: 'transform 0.3s ease' 
                                                     }} 
                                                 />
                                             </button>
                                             <AnimatePresence>
-                                                {isScheduleMobileOpen && (
+                                                {mobileDropdown === item.name && (
                                                     <motion.div
                                                         initial={{ height: 0, opacity: 0 }}
                                                         animate={{ height: 'auto', opacity: 1 }}
@@ -307,7 +353,7 @@ const Navbar = () => {
                                                                         to={subItem.path}
                                                                         onClick={() => {
                                                                             setIsOpen(false);
-                                                                            setIsScheduleMobileOpen(false);
+                                                                            setMobileDropdown(null);
                                                                         }}
                                                                         style={{
                                                                             color: 'var(--color-gold-light)',

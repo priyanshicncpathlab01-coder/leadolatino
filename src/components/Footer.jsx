@@ -10,7 +10,8 @@ const Footer = () => {
                     <div>
                         <h3 style={{ color: 'var(--color-gold)', fontSize: '24px', marginBottom: '20px', fontFamily: 'var(--font-serif)' }}>India World Dance Congress</h3>
                         <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', lineHeight: '1.8' }}>
-                            India’s premier Afro-Latin dance festival, bringing together the global Salsa, Bachata, Kizomba, and Zouk community.
+                            Lead O’Latino World Congress is India’s premier Afro-Latin dance festival, bringing together the global communities of Salsa, Bachata, Kizomba, and Zouk under one spectacular roof. More than just an event, it is a world-class celebration of dance, music, culture, and human connection, where internationally acclaimed artists, performers, instructors, DJs, and passionate dancers from across the globe come together to learn, perform, compete, and create unforgettable memories.
+
                         </p>
                     </div>
                     <div>
@@ -26,26 +27,26 @@ const Footer = () => {
                         <h4 style={{ color: '#fff', fontSize: '18px', marginBottom: '20px', fontFamily: 'var(--font-serif)', letterSpacing: '1px' }}>Connect</h4>
                         <div style={{ display: 'flex', gap: '15px' }}>
                             {[MessageCircle, Camera, Globe].map((Icon, i) => (
-                                <a key={i} href="#" style={{ 
-                                    color: 'var(--color-gold)', 
-                                    display: 'flex', 
-                                    alignItems: 'center', 
+                                <a key={i} href="#" style={{
+                                    color: 'var(--color-gold)',
+                                    display: 'flex',
+                                    alignItems: 'center',
                                     justifyContent: 'center',
-                                    width: '45px', 
-                                    height: '45px', 
-                                    background: 'rgba(255,255,255,0.03)', 
+                                    width: '45px',
+                                    height: '45px',
+                                    background: 'rgba(255,255,255,0.03)',
                                     borderRadius: '12px',
                                     border: '1px solid rgba(201,152,46,0.2)',
                                     transition: 'all 0.3s ease'
                                 }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'rgba(201,152,46,0.1)';
-                                    e.currentTarget.style.transform = 'translateY(-3px)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.background = 'rgba(201,152,46,0.1)';
+                                        e.currentTarget.style.transform = 'translateY(-3px)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                    }}
                                 >
                                     <Icon size={20} />
                                 </a>
